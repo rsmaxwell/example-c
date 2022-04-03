@@ -12,13 +12,10 @@ NAME = example-c
 all : $(NAME)
 
 $(NAME): $(SOURCES) $(HEADERS)
-	@echo BUILD_TYPE = $(BUILD_TYPE)
 	@echo SOURCE = $(SOURCE)
-	@echo INSTALL = $(INSTALL)
 	@echo INCLUDES = $(INCLUDES)
 	@echo SOURCES = $(SOURCES)
 	@echo HEADERS = $(HEADERS)
-	@echo pwd = ${CURDIR}
 	$(CC) $(CFLAGS) $(DEFINES) $(INCLUDES) $(SOURCES) -o $(NAME)
 
 clean::
