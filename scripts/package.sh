@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 NAME=example-c
 
 VERSION=${BUILD_ID:-SNAPSHOT}
