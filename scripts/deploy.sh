@@ -1,5 +1,11 @@
 #!/bin/bash
 
+set -x 
+ls -al ${HOME}/.m2
+cat ${HOME}/.m2/settings.xml
+
+
+
 NAME=example-c
 
 GROUPID=com.rsmaxwell.example
