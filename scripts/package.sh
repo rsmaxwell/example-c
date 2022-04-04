@@ -16,3 +16,5 @@ mkdir -p ${PACKAGE_DIR}
 
 cd ${BUILD_DIR}
 zip ${PACKAGE_DIR}/${ZIPFILE} ${NAME}
+
+tree ${PROJECT_DIR}
