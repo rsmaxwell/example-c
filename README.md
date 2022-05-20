@@ -1,2 +1,1 @@
-"# players-tt-api" 
-"# example-c" 
+# example-c
