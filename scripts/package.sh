@@ -3,10 +3,7 @@
 
 NAME=example-c
 
-ARTIFACTID=${NAME}_amd64-linux
-VERSION=${BUILD_ID:-SNAPSHOT}
-PACKAGING=zip
-ZIPFILE=${ARTIFACTID}_${VERSION}.${PACKAGING}
+ZIPFILE=${NAME}_amd64-linux.zip
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 PROJECT_DIR=$(dirname ${SCRIPT_DIR})

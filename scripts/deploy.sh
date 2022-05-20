@@ -2,6 +2,9 @@
 
 NAME=example-c
 
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+PROJECT_DIR=$(dirname ${SCRIPT_DIR})
+
 GROUPID=com.rsmaxwell.example
 ARTIFACTID=${NAME}_amd64-linux
 VERSION=${BUILD_ID:-SNAPSHOT}
@@ -11,20 +14,14 @@ REPOSITORY=releases
 REPOSITORYID=releases
 URL=https://pluto.rsmaxwell.co.uk/archiva/repository/${REPOSITORY}
 
-ZIPFILE=${ARTIFACTID}_${VERSION}.${PACKAGING}
+ZIPFILE=${ARTIFACTID}.${PACKAGING}
 
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-PROJECT_DIR=$(dirname ${SCRIPT_DIR})
-BUILD_DIR=${PROJECT_DIR}/build
-PACKAGE_DIR=${PROJECT_DIR}/package
-
-cd ${PACKAGE_DIR}
 mvn --batch-mode deploy:deploy-file \
 	-DgroupId=${GROUPID} \
 	-DartifactId=${ARTIFACTID} \
 	-Dversion=${VERSION} \
 	-Dpackaging=${PACKAGING} \
-	-Dfile=${ZIPFILE} \
+	-Dfile=${PROJECT_DIR}/${ZIPFILE} \
 	-DrepositoryId=${REPOSITORYID} \
 	-Durl=${URL}
 
