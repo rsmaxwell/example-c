@@ -1,7 +1,6 @@
 #!/bin/bash
 
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-PROJECT_DIR=$(dirname ${SCRIPT_DIR})
+PROJECT_DIR=$(pwd)
 BUILD_DIR=${PROJECT_DIR}/build
 
 mkdir -p ${BUILD_DIR}

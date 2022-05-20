@@ -1,12 +1,10 @@
 #!/bin/bash
 
-
 NAME=example-c
 
 ZIPFILE=${NAME}_amd64-linux.zip
 
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-PROJECT_DIR=$(dirname ${SCRIPT_DIR})
+PROJECT_DIR=$(pwd)
 BUILD_DIR=${PROJECT_DIR}/build
 PACKAGE_DIR=${PROJECT_DIR}/package
 
