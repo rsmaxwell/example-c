@@ -14,7 +14,7 @@ set -x
 tree ${PROJECT_DIR}
 
 rm -rf ${PACKAGE_DIR}
-mkdir -p ${PACKAGE_DIR}
+mkdir -p ${PACKAGE_DIR} ${DIST_DIR}
 
 cd ${PACKAGE_DIR}
 cp ${BUILD_DIR}/${NAME} .
