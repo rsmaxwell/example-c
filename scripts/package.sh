@@ -8,6 +8,10 @@ PROJECT_DIR=$(pwd)
 BUILD_DIR=${PROJECT_DIR}/build
 PACKAGE_DIR=${PROJECT_DIR}/package
 
+echo "-----[ debug info ]----------------"
+set -x
+tree ${PROJECT_DIR}
+
 rm -rf ${PACKAGE_DIR}
 mkdir -p ${PACKAGE_DIR}
 
@@ -16,3 +20,5 @@ cp ${BUILD_DIR}/${NAME} .
 
 zip ${PROJECT_DIR}/${ZIPFILE} ${NAME}
 
+
+tree ${PROJECT_DIR}

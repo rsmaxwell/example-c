@@ -22,10 +22,7 @@ cd ${PACKAGE_DIR}
 
 
 echo "-----[ debug info ]----------------"
-set -x 
-ls -al ${HOME}
-ls -al ${HOME}/.m2
-cat ${HOME}/.m2/settings.xml
+set -x
 pwd
 ls -al 
 
