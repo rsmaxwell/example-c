@@ -21,7 +21,7 @@ cd ${DIST_DIR}
 
 echo "-----[ debug info ]----------------"
 set -x
-tree ${PROJECT_DIR}
+cat ~/.m2/settings.xml
 pwd
 ls -al 
 
