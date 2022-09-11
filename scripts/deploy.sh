@@ -15,11 +15,9 @@ ZIPFILE=${ARTIFACTID}.${PACKAGING}
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 PROJECT_DIR=$(dirname ${SCRIPT_DIR})
-BUILD_DIR=${PROJECT_DIR}/build
 DIST_DIR=${PROJECT_DIR}/dist
 
 cd ${DIST_DIR}
-
 
 echo "-----[ debug info ]----------------"
 set -x

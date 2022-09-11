@@ -1,8 +1,7 @@
 #!/bin/bash
 
-echo "-----[ debug info ]----------------"
-set -x
-pwd
-tree 
+NAME=example-c
+BUILD_DIR=${PROJECT_DIR}/build
 
-echo "Hello World!"
+set -x
+${BUILD_DIR}/${NAME}
