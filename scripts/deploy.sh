@@ -16,13 +16,14 @@ ZIPFILE=${ARTIFACTID}.${PACKAGING}
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 PROJECT_DIR=$(dirname ${SCRIPT_DIR})
 BUILD_DIR=${PROJECT_DIR}/build
-PACKAGE_DIR=${PROJECT_DIR}/package
+DIST_DIR=${PROJECT_DIR}/dist
 
-cd ${PACKAGE_DIR}
+cd ${DIST_DIR}
 
 
 echo "-----[ debug info ]----------------"
 set -x
+tree ${PROJECT_DIR}
 pwd
 ls -al 
 
