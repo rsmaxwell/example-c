@@ -16,3 +16,4 @@ cd ${PACKAGE_DIR}
 cp ${BUILD_DIR}/${NAME} .
 
 zip ${DIST_DIR}/${ZIPFILE} ${NAME}
+
