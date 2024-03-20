@@ -50,7 +50,10 @@ DIST_DIR=${PROJECT_DIR}/dist
 
 cd ${DIST_DIR}
 
-mvn --batch-mode deploy:deploy-file \
+mvn --batch-mode \
+	--errors \
+	--debug \
+	deploy:deploy-file \
 	-DgroupId=${GROUPID} \
 	-DartifactId=${ARTIFACTID} \
 	-Dversion=${VERSION} \
