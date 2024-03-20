@@ -21,11 +21,6 @@ case "$(uname -m)" in
   *) ARCHITECTURE="x86" ;; 
 esac 
 
-cat > info <<EOL
-FAMILY="${FAMILY}"
-ARCHITECTURE="${ARCHITECTURE}"
-EOL
-
 
 
 
@@ -36,6 +31,18 @@ BUILD_DIR=${PROJECT_DIR}/build
 
 mkdir -p ${BUILD_DIR}
 cd ${BUILD_DIR}
+
+
+
+
+
+cat > info <<EOL
+FAMILY="${FAMILY}"
+ARCHITECTURE="${ARCHITECTURE}"
+EOL
+
+
+
 
 export SOURCE=${PROJECT_DIR}/src/main/c
 
