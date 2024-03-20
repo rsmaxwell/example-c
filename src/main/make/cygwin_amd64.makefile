@@ -8,7 +8,7 @@ SOURCES = $(wildcard $(SOURCE)/*.c)
 HEADERS = $(wildcard $(SOURCE)/*.h) 
 
 NAME = example-c
-FAMILY = linux
+FAMILY = cygwin
 ARCH = amd64
 ARTIFACTID = ${NAME}_${FAMILY}_$(ARCH)
 VERSION = $(or $(BUILD_ID), SNAPSHOT)
