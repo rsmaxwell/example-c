@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 NAME=example-c
 FAMILY=""
 ARCHITECTURE=""
