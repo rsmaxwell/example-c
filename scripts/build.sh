@@ -1,8 +1,5 @@
 #!/bin/bash
 
-
-
-
 FAMILY=""
 ARCHITECTURE=""
 
@@ -23,6 +20,11 @@ case "$(uname -m)" in
   amd64|x86_64)   ARCHITECTURE="amd64" ;; 
   *) ARCHITECTURE="x86" ;; 
 esac 
+
+cat > info <<EOL
+FAMILY="${FAMILY}"
+ARCHITECTURE="${ARCHITECTURE}"
+EOL
 
 
 

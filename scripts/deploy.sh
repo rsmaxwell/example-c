@@ -1,37 +1,12 @@
 #!/bin/bash
 
+PROJECT_DIR=$(pwd)
+BUILD_DIR=${PROJECT_DIR}/build
+DIST_DIR=${PROJECT_DIR}/dist
+
+. ${BUILD_DIR}/info
+
 PROJECT=example-c
-
-
-
-
-FAMILY=""
-ARCHITECTURE=""
-
-case "$(uname -s)" in
-    CYGWIN*) FAMILY="cygwin" ;;
-    Linux*) 
-        . /etc/os-release
-        case ${ID} in
-            ubuntu) FAMILY="linux" ;;
-            alpine) FAMILY="alpine" ;;
-            *) FAMILY="linux" ;;
-        esac
-        ;;
-    *) FAMILY="unknown" ;;
-esac
-
-case "$(uname -m)" in 
-  amd64|x86_64)   ARCHITECTURE="amd64" ;; 
-  *) ARCHITECTURE="x86" ;; 
-esac 
-
-
-
-
-
-
-
 GROUPID=com.rsmaxwell.example
 ARTIFACTID=${PROJECT}_${FAMILY}_${ARCHITECTURE}
 VERSION=${BUILD_ID:-SNAPSHOT}
@@ -42,11 +17,6 @@ REPOSITORYID=releases
 URL=https://pluto.rsmaxwell.co.uk/archiva/repository/${REPOSITORY}
 
 ZIPFILE=${ARTIFACTID}_${VERSION}.${PACKAGING}
-
-
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-PROJECT_DIR=$(dirname ${SCRIPT_DIR})
-DIST_DIR=${PROJECT_DIR}/dist
 
 cd ${DIST_DIR}
 
@@ -60,4 +30,3 @@ mvn --batch-mode \
 	-Dfile=${ZIPFILE} \
 	-DrepositoryId=${REPOSITORYID} \
 	-Durl=${URL}
-
