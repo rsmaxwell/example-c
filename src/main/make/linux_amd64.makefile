@@ -8,20 +8,12 @@ SOURCES = $(wildcard $(SOURCE)/*.c)
 HEADERS = $(wildcard $(SOURCE)/*.h) 
 
 NAME = example-c
-FAMILY = linux
-ARCH = amd64
-ARTIFACTID = ${NAME}_${FAMILY}_$(ARCH)
-VERSION = $(or $(BUILD_ID), SNAPSHOT)
-PACKAGING = zip
-ZIPFILE = ${ARTIFACTID}_${VERSION}.${PACKAGING}
 
-all : $(ZIPFILE)
+
+all : $(NAME)
 
 $(NAME): $(SOURCES) $(HEADERS)
 	$(CC) $(CFLAGS) $(DEFINES) $(INCLUDES) $(SOURCES) -o $(NAME)
-
-$(ZIPFILE): $(NAME)
-	zip $(ZIPFILE) $(NAME)
 
 clean::
 	-@rm $(NAME)

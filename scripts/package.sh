@@ -1,8 +1,39 @@
 #!/bin/bash
 
 NAME=example-c
+FAMILY=""
+ARCHITECTURE=""
 
-ZIPFILE=${NAME}_amd64-linux.zip
+
+
+case "$(uname -s)" in
+    CYGWIN*) FAMILY="cygwin" ;;
+    Linux*) 
+        . /etc/os-release
+        case ${ID} in
+            ubuntu) FAMILY="ubuntu" ;;
+            alpine) FAMILY="alpine" ;;
+            *) FAMILY="linux" ;;
+        esac
+        ;;
+    *) FAMILY="unknown" ;;
+esac
+
+case "$(uname -m)" in 
+  amd64|x86_64)   ARCHITECTURE="amd64" ;; 
+  *) ARCHITECTURE="x86" ;; 
+esac 
+
+
+
+
+
+
+
+VERSION=${BUILD_ID:-SNAPSHOT}
+ARTIFACTID=${NAME}_${FAMILY}_${ARCHITECTURE}
+PACKAGING=zip
+ZIPFILE=${ARTIFACTID}_${VERSION}.${PACKAGING}
 
 PROJECT_DIR=$(pwd)
 BUILD_DIR=${PROJECT_DIR}/build

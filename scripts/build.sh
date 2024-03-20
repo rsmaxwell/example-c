@@ -7,25 +7,25 @@ BUILD_DIR=${PROJECT_DIR}/build
 
 
 
-OS_NAME=""
-ARCH_NAME=""
+FAMILY=""
+ARCHITECTURE=""
 
 case "$(uname -s)" in
-    CYGWIN*) OS_NAME="cygwin" ;;
+    CYGWIN*) FAMILY="cygwin" ;;
     Linux*) 
         . /etc/os-release
         case ${ID} in
-            ubuntu) OS_NAME="ubuntu" ;;
-            alpine) OS_NAME="alpine" ;;
-            *) OS_NAME="linux" ;;
+            ubuntu) FAMILY="ubuntu" ;;
+            alpine) FAMILY="alpine" ;;
+            *) FAMILY="linux" ;;
         esac
         ;;
-    *) OS_NAME="unknown" ;;
+    *) FAMILY="unknown" ;;
 esac
 
 case "$(uname -m)" in 
-  amd64|x86_64)   ARCH_NAME="amd64" ;; 
-  *) ARCH_NAME="x86" ;; 
+  amd64|x86_64)   ARCHITECTURE="amd64" ;; 
+  *) ARCHITECTURE="x86" ;; 
 esac 
 
 
@@ -37,4 +37,4 @@ cd ${BUILD_DIR}
 
 export SOURCE=${PROJECT_DIR}/src/main/c
 
-make --file ${PROJECT_DIR}/src/main/make/${OS_NAME}_${ARCH_NAME}.makefile $*
+make --file ${PROJECT_DIR}/src/main/make/${FAMILY}_${ARCHITECTURE}.makefile $*
