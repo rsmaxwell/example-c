@@ -30,7 +30,7 @@ esac
 
 
 
-
+set -x
 
 
 GROUPID=com.rsmaxwell.example
@@ -50,9 +50,11 @@ DIST_DIR=${PROJECT_DIR}/dist
 
 cd ${DIST_DIR}
 
+pwd
+ls -al 
+
 mvn --batch-mode \
 	--errors \
-	--debug \
 	deploy:deploy-file \
 	-DgroupId=${GROUPID} \
 	-DartifactId=${ARTIFACTID} \
