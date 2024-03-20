@@ -20,4 +20,12 @@ cd ${PACKAGE_DIR}
 cp ${BUILD_DIR}/${PROJECT} .
 
 zip ${DIST_DIR}/${ZIPFILE} ${PROJECT}
+result=$?
+if [ ! ${result} -eq 0 ]; then
+    echo "packaging failed"
+    echo "Error: $0[${LINENO}] result: ${result}"
+    exit 1
+fi
+
+echo "Success"
 

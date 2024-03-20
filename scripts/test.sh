@@ -18,11 +18,10 @@ result=$?
 if [ ${result} -eq 0 ]; then
     echo "Success" > status.txt
 else
-    echo "The test failed: exit code: ${result}"
+    echo "test failed"
     echo "Error: $0[${LINENO}] result: ${result}"
     echo "Failed" > status.txt
     exit 1
 fi
-
 
 echo "Success"

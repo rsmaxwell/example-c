@@ -30,3 +30,13 @@ mvn --batch-mode \
 	-Dfile=${ZIPFILE} \
 	-DrepositoryId=${REPOSITORYID} \
 	-Durl=${URL}
+
+result=$?
+if [ ! ${result} -eq 0 ]; then
+    echo "deployment failed"
+    echo "Error: $0[${LINENO}] result: ${result}"
+    exit 1
+fi
+
+echo "Success"
+

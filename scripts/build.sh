@@ -40,3 +40,15 @@ cd ${BUILD_DIR}
 export SOURCE=${PROJECT_DIR}/src/main/c
 
 make --file ${PROJECT_DIR}/src/main/make/${FAMILY}_${ARCHITECTURE}.makefile $*
+result=$?
+if [ ! ${result} -eq 0 ]; then
+    echo "build failed"
+    echo "Error: $0[${LINENO}] result: ${result}"
+    exit 1
+fi
+
+pwd
+ls -al 
+cat info
+
+echo "Success"
