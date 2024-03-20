@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 PROJECT_DIR=$(pwd)
 BUILD_DIR=${PROJECT_DIR}/build
 PACKAGE_DIR=${PROJECT_DIR}/package
