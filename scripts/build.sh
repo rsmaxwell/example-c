@@ -11,7 +11,7 @@ case "$(uname -s)" in
     Linux*) 
         . /etc/os-release
         case ${ID} in
-            ubuntu) FAMILY="ubuntu" ;;
+            ubuntu) FAMILY="linux" ;;
             alpine) FAMILY="alpine" ;;
             *) FAMILY="linux" ;;
         esac
