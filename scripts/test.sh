@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NAME=example-c
+PROJECT=example-c
 PROJECT_DIR=$(pwd)
 BUILD_DIR=${PROJECT_DIR}/build
 TEST_DIR=${PROJECT_DIR}/test
@@ -13,7 +13,7 @@ cd ${TEST_DIR}
 
 
 
-${BUILD_DIR}/${NAME}
+${BUILD_DIR}/${PROJECT}
 result=$?
 if [ ${result} -eq 0 ]; then
     echo "Success" > status.txt

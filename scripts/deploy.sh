@@ -1,9 +1,40 @@
 #!/bin/bash
 
-NAME=example-c
+PROJECT=example-c
+
+
+
+
+FAMILY=""
+ARCHITECTURE=""
+
+case "$(uname -s)" in
+    CYGWIN*) FAMILY="cygwin" ;;
+    Linux*) 
+        . /etc/os-release
+        case ${ID} in
+            ubuntu) FAMILY="ubuntu" ;;
+            alpine) FAMILY="alpine" ;;
+            *) FAMILY="linux" ;;
+        esac
+        ;;
+    *) FAMILY="unknown" ;;
+esac
+
+case "$(uname -m)" in 
+  amd64|x86_64)   ARCHITECTURE="amd64" ;; 
+  *) ARCHITECTURE="x86" ;; 
+esac 
+
+
+
+
+
+
+
 
 GROUPID=com.rsmaxwell.example
-ARTIFACTID=${NAME}_amd64-linux
+ARTIFACTID=${PROJECT}_${FAMILY}_${ARCHITECTURE}
 VERSION=${BUILD_ID:-SNAPSHOT}
 PACKAGING=zip
 

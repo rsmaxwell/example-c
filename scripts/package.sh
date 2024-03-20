@@ -1,12 +1,12 @@
 #!/bin/bash
 
-set -x
+PROJECT=example-c
 
-NAME=example-c
+
+
+
 FAMILY=""
 ARCHITECTURE=""
-
-
 
 case "$(uname -s)" in
     CYGWIN*) FAMILY="cygwin" ;;
@@ -32,8 +32,8 @@ esac
 
 
 
+ARTIFACTID=${PROJECT}_${FAMILY}_${ARCHITECTURE}
 VERSION=${BUILD_ID:-SNAPSHOT}
-ARTIFACTID=${NAME}_${FAMILY}_${ARCHITECTURE}
 PACKAGING=zip
 ZIPFILE=${ARTIFACTID}_${VERSION}.${PACKAGING}
 
@@ -46,7 +46,7 @@ rm -rf ${PACKAGE_DIR}
 mkdir -p ${PACKAGE_DIR} ${DIST_DIR}
 
 cd ${PACKAGE_DIR}
-cp ${BUILD_DIR}/${NAME} .
+cp ${BUILD_DIR}/${PROJECT} .
 
-zip ${DIST_DIR}/${ZIPFILE} ${NAME}
+zip ${DIST_DIR}/${ZIPFILE} ${PROJECT}
 

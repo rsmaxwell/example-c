@@ -1,9 +1,5 @@
 #!/bin/bash
 
-PROJECT_DIR=$(pwd)
-BUILD_DIR=${PROJECT_DIR}/build
-
-
 
 
 
@@ -31,6 +27,10 @@ esac
 
 
 
+
+
+PROJECT_DIR=$(pwd)
+BUILD_DIR=${PROJECT_DIR}/build
 
 mkdir -p ${BUILD_DIR}
 cd ${BUILD_DIR}
