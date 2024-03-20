@@ -30,7 +30,6 @@ esac
 
 
 
-set -x
 
 
 GROUPID=com.rsmaxwell.example
@@ -42,7 +41,8 @@ REPOSITORY=releases
 REPOSITORYID=releases
 URL=https://pluto.rsmaxwell.co.uk/archiva/repository/${REPOSITORY}
 
-ZIPFILE=${ARTIFACTID}.${PACKAGING}
+ZIPFILE=${ARTIFACTID}_${VERSION}.${PACKAGING}
+
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 PROJECT_DIR=$(dirname ${SCRIPT_DIR})
