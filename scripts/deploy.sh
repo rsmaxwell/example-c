@@ -50,9 +50,6 @@ DIST_DIR=${PROJECT_DIR}/dist
 
 cd ${DIST_DIR}
 
-pwd
-ls -al 
-
 mvn --batch-mode \
 	--errors \
 	deploy:deploy-file \
