@@ -1,13 +1,11 @@
 #!/bin/bash
 
-set -x
-
 PROJECT_DIR=$(pwd)
 BUILD_DIR=${PROJECT_DIR}/build
 PACKAGE_DIR=${PROJECT_DIR}/package
 DIST_DIR=${PROJECT_DIR}/dist
 
-. ${BUILD_DIR}/info
+. ${BUILD_DIR}/buildinfo
 
 PROJECT=example-c
 ARTIFACTID=${PROJECT}_${FAMILY}_${ARCHITECTURE}
@@ -15,7 +13,7 @@ VERSION=${BUILD_ID:-SNAPSHOT}
 PACKAGING=zip
 ZIPFILE=${ARTIFACTID}_${VERSION}.${PACKAGING}
 
-rm -rf ${PACKAGE_DIR}
+rm -rf ${PACKAGE_DIR} ${DIST_DIR}
 mkdir -p ${PACKAGE_DIR} ${DIST_DIR}
 
 cd ${PACKAGE_DIR}

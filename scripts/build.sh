@@ -36,7 +36,7 @@ cd ${BUILD_DIR}
 
 
 
-cat > info <<EOL
+cat > buildinfo <<EOL
 FAMILY="${FAMILY}"
 ARCHITECTURE="${ARCHITECTURE}"
 EOL
@@ -46,7 +46,7 @@ EOL
 
 export SOURCE=${PROJECT_DIR}/src/main/c
 
-make --file ${PROJECT_DIR}/src/main/make/${FAMILY}_${ARCHITECTURE}.makefile $*
+make --file ${PROJECT_DIR}/src/main/make/linux.makefile $*
 result=$?
 if [ ! ${result} -eq 0 ]; then
     echo "build failed"
@@ -56,6 +56,6 @@ fi
 
 pwd
 ls -al 
-cat info
+cat buildinfo
 
 echo "Success"

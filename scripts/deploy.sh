@@ -4,7 +4,7 @@ PROJECT_DIR=$(pwd)
 BUILD_DIR=${PROJECT_DIR}/build
 DIST_DIR=${PROJECT_DIR}/dist
 
-. ${BUILD_DIR}/info
+. ${BUILD_DIR}/buildinfo
 
 PROJECT=example-c
 GROUPID=com.rsmaxwell.example
