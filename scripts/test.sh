@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 PROJECT=example-c
 PROJECT_DIR=$(pwd)

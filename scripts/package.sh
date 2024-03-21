@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 PROJECT_DIR=$(pwd)
 BUILD_DIR=${PROJECT_DIR}/build
