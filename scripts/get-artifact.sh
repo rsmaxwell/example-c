@@ -1,11 +1,12 @@
 #!/bin/sh
 
-PROJECT_DIR=$(pwd)
+BASEDIR=$(dirname "$0")
+SCRIPT_DIR=$(cd $(dirname $BASEDIR) && pwd)
+PROJECT_DIR=$(dirname $SCRIPT_DIR)
 BUILD_DIR=${PROJECT_DIR}/build
 DIST_DIR=${PROJECT_DIR}/dist
 
-FAMILY=linux
-ARCHITECTURE=amd64
+. ${BUILD_DIR}/buildinfo
 
 PROJECT=example-c
 GROUPID=com.rsmaxwell.example

@@ -1,6 +1,8 @@
 #!/bin/sh
 
-PROJECT_DIR=$(pwd)
+BASEDIR=$(dirname "$0")
+SCRIPT_DIR=$(cd $(dirname $BASEDIR) && pwd)
+PROJECT_DIR=$(dirname $SCRIPT_DIR)
 BUILD_DIR=${PROJECT_DIR}/build
 DIST_DIR=${PROJECT_DIR}/dist
 
@@ -9,11 +11,18 @@ DIST_DIR=${PROJECT_DIR}/dist
 PROJECT=example-c
 GROUPID=com.rsmaxwell.example
 ARTIFACTID=${PROJECT}_${FAMILY}_${ARCHITECTURE}
-VERSION=${BUILD_ID:-SNAPSHOT}
 PACKAGING=zip
 
-REPOSITORY=releases
-REPOSITORYID=releases
+if [ -z "${BUILD_ID}" ]; then
+    VERSION=SNAPSHOT
+    REPOSITORY=snapshots
+    REPOSITORYID=snapshots
+else
+    VERSION=${BUILD_ID}
+    REPOSITORY=releases
+    REPOSITORYID=releases
+fi
+
 URL=https://pluto.rsmaxwell.co.uk/archiva/repository/${REPOSITORY}
 
 ZIPFILE=${ARTIFACTID}_${VERSION}.${PACKAGING}

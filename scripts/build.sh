@@ -1,5 +1,6 @@
 #!/bin/sh
 
+
 FAMILY=""
 ARCHITECTURE=""
 
@@ -25,8 +26,9 @@ esac
 
 
 
-
-PROJECT_DIR=$(pwd)
+BASEDIR=$(dirname "$0")
+SCRIPT_DIR=$(cd $(dirname $BASEDIR) && pwd)
+PROJECT_DIR=$(dirname $SCRIPT_DIR)
 BUILD_DIR=${PROJECT_DIR}/build
 
 mkdir -p ${BUILD_DIR}
@@ -46,7 +48,7 @@ EOL
 
 export SOURCE=${PROJECT_DIR}/src/main/c
 
-make --file ${PROJECT_DIR}/src/main/make/linux.makefile $*
+make --file ${PROJECT_DIR}/src/main/make/${FAMILY}_${ARCHITECTURE}.makefile $*
 result=$?
 if [ ! ${result} -eq 0 ]; then
     echo "build failed"

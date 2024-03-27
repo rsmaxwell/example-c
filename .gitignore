@@ -2,5 +2,5 @@ build/
 dist/
 package/
 test/
+*.zip
 src/main/c/version.h
-example-c_*.zip
