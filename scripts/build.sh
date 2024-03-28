@@ -23,7 +23,15 @@ case "$(uname -m)" in
 esac 
 
 
-
+if [ -z "${BUILD_ID}" ]; then
+    VERSION="0.0-SNAPSHOT"
+    REPOSITORY=snapshots
+    REPOSITORYID=snapshots
+else
+    VERSION=${BUILD_ID}
+    REPOSITORY=releases
+    REPOSITORYID=releases
+fi
 
 
 BASEDIR=$(dirname "$0")
@@ -34,30 +42,24 @@ BUILD_DIR=${PROJECT_DIR}/build
 mkdir -p ${BUILD_DIR}
 cd ${BUILD_DIR}
 
-exit 99
-
 
 
 cat > buildinfo <<EOL
 FAMILY="${FAMILY}"
 ARCHITECTURE="${ARCHITECTURE}"
+VERSION="${VERSION}"
+REPOSITORY="${REPOSITORY}"
+REPOSITORYID="${REPOSITORYID}"
 EOL
-
-
-
-
-export SOURCE=${PROJECT_DIR}/src/main/c
-
-make --file ${PROJECT_DIR}/src/main/make/${FAMILY}_${ARCHITECTURE}.makefile $*
-result=$?
-if [ ! ${result} -eq 0 ]; then
-    echo "build failed"
-    echo "Error: $0[${LINENO}] result: ${result}"
-    exit 1
-fi
 
 pwd
 ls -al 
 cat buildinfo
 
-echo "Success"
+
+
+SOURCE=${PROJECT_DIR}/src/main/c
+export SOURCE
+
+make --file ${PROJECT_DIR}/src/main/make/${FAMILY}_${ARCHITECTURE}.makefile $*
+
