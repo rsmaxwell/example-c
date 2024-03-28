@@ -8,7 +8,6 @@ BUILD_DIR=${PROJECT_DIR}/build
 
 . ${BUILD_DIR}/buildinfo
 
-
 mkdir -p ${BUILD_DIR}
 cd ${BUILD_DIR}
 

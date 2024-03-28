@@ -9,7 +9,6 @@ DIST_DIR=${PROJECT_DIR}/dist
 
 . ${BUILD_DIR}/buildinfo
 
-PROJECT=example-c
 GROUPID=com.rsmaxwell.example
 ARTIFACTID=${PROJECT}_${FAMILY}_${ARCHITECTURE}
 PACKAGING=zip
