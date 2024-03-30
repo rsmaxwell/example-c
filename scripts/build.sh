@@ -41,7 +41,7 @@ EOL
 
 pwd
 ls -al 
-cat buildinfo
+cat machineinfo
 
 
 
