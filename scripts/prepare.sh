@@ -2,6 +2,7 @@
 
 
 if [ -z "${BUILD_ID}" ]; then
+    BUILD_ID="(none)"
     VERSION="0.0.1-SNAPSHOT"
     REPOSITORY=snapshots
     REPOSITORYID=snapshots
@@ -18,13 +19,13 @@ PROJECT_DIR=$(dirname $SCRIPT_DIR)
 SOURCE_DIR=${PROJECT_DIR}/src
 BUILD_DIR=${PROJECT_DIR}/build
 TEMPLATES_DIR=${PROJECT_DIR}/templates
-
+PROJECT=example-c
 
 mkdir -p ${BUILD_DIR}
 cd ${BUILD_DIR}
 
 
-PROJECT=example-c
+
 
 cat > versioninfo <<EOL
 PROJECT="${PROJECT}"
