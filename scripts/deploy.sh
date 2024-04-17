@@ -19,6 +19,12 @@ ZIPFILE=${ARTIFACTID}_${VERSION}.${PACKAGING}
 
 cd ${DIST_DIR}
 
+id -a 
+ls -al ~
+ls -al ~/.m2
+cat ~/.m2/settings.xml
+
+
 mvn --batch-mode --errors deploy:deploy-file \
 	-DgroupId=${GROUPID} \
 	-DartifactId=${ARTIFACTID} \
