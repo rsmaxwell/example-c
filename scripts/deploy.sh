@@ -1,5 +1,6 @@
 #!/bin/sh
 
+set -x 
 
 BASEDIR=$(dirname "$0")
 SCRIPT_DIR=$(cd $BASEDIR && pwd)
