@@ -1,16 +1,27 @@
 #!/bin/sh
 
 
-BASEDIR=$(dirname "$0")
-SCRIPT_DIR=$(cd $BASEDIR && pwd)
-PROJECT_DIR=$(dirname $SCRIPT_DIR)
-SOURCE_DIR=${PROJECT_DIR}/src
-BUILD_DIR=${PROJECT_DIR}/build
-TEMPLATES_DIR=${PROJECT_DIR}/templates
-PROJECT=example-c
+FAMILY=""
+ARCHITECTURE=""
 
-mkdir -p ${BUILD_DIR}
-cd ${BUILD_DIR}
+case "$(uname -s)" in
+    CYGWIN*) FAMILY="cygwin" ;;
+    Linux*) 
+        . /etc/os-release
+        case ${ID} in
+            ubuntu) FAMILY="linux" ;;
+            alpine) FAMILY="alpine" ;;
+            *) FAMILY="linux" ;;
+        esac
+        ;;
+    *) FAMILY="unknown" ;;
+esac
+
+case "$(uname -m)" in 
+  amd64|x86_64)   ARCHITECTURE="amd64" ;; 
+  *) ARCHITECTURE="x86" ;; 
+esac
+
 
 
 if [ -z "${BUILD_ID}" ]; then
@@ -25,16 +36,40 @@ else
 fi
 
 
-cat > versioninfo <<EOL
-PROJECT="${PROJECT}"
-VERSION="${VERSION}"
-REPOSITORY="${REPOSITORY}"
-REPOSITORYID="${REPOSITORYID}"
-EOL
 
-pwd
-ls -al 
-cat versioninfo
+if [ -f ${HOME}/.m2/maven-repository-info ]; then
+    . ${HOME}/.m2/maven-repository-info
+elif [ -f ./maven-repository-info ]; then
+    . ./maven-repository-info
+fi
+
+if [ -z "${MAVEN_REPOSITORY_BASE_URL}" ]; then
+    echo "'MAVEN_REPOSITORY_BASE_URL' is not defined"
+    exit 1
+fi
+
+REPOSITORY_URL="${MAVEN_REPOSITORY_BASE_URL}/${REPOSITORY}"
+
+
+
+
+BASEDIR=$(dirname "$0")
+SCRIPT_DIR=$(cd $BASEDIR && pwd)
+PROJECT_DIR=$(dirname $SCRIPT_DIR)
+SOURCE_DIR=${PROJECT_DIR}/src
+BUILD_DIR=${PROJECT_DIR}/build
+TEMPLATES_DIR=${PROJECT_DIR}/templates
+
+
+
+
+
+
+PROJECT=example-c
+GROUPID=com.rsmaxwell.example
+ARTIFACTID=${PROJECT}_${FAMILY}_${ARCHITECTURE}
+PACKAGING=zip
+ZIPFILE=${ARTIFACTID}_${VERSION}.${PACKAGING}
 
 
 
@@ -52,13 +87,47 @@ export TIMESTAMP
 export GIT_COMMIT
 export GIT_BRANCH
 export GIT_URL
+export FAMILY
+export ARCHITECTURE
 
-tags='$PROJECT,$REPOSITORY,$REPOSITORYID,$VERSION,$BUILD_ID,$TIMESTAMP,$GIT_COMMIT,$GIT_BRANCH,$GIT_URL'
 
 cd ${TEMPLATES_DIR}
 
+tags='$FAMILY,$ARCHITECTURE,$PROJECT,$REPOSITORY,$REPOSITORYID,$VERSION,$BUILD_ID,$TIMESTAMP,$GIT_COMMIT,$GIT_BRANCH,$GIT_URL'
+
 find . -type f | while read filename; do
     echo "Writing ${filename}"
-    envsubst "${tags}" < ${filename} > ${SOURCE_DIR}/${filename}
+    file=${SOURCE_DIR}/${filename}
+    dir=${directory ${file}}
+    mkdir -p ${dir}
+    envsubst "${tags}" < ${filename} > ${file}
 done
 
+
+
+
+mkdir -p ${BUILD_DIR}
+cd ${BUILD_DIR}
+
+cat > buildinfo <<EOL
+BUILD_ID="${BUILD_ID}"
+VERSION="${VERSION}"
+REPOSITORY="${REPOSITORY}"
+REPOSITORYID="${REPOSITORYID}"
+REPOSITORY_URL="${REPOSITORY_URL}"
+FAMILY="${FAMILY}"
+ARCHITECTURE="${ARCHITECTURE}"
+PROJECT="${PROJECT}"
+GROUPID="${GROUPID}"
+ARTIFACTID="${ARTIFACTID}"
+PACKAGING="${PACKAGING}"
+ZIPFILE="${ZIPFILE}"
+TIMESTAMP="${TIMESTAMP}"
+GIT_COMMIT="${GIT_COMMIT}"
+GIT_BRANCH="${GIT_BRANCH}"
+GIT_URL="${GIT_URL}"
+EOL
+
+pwd
+ls -al 
+cat buildinfo

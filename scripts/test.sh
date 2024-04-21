@@ -11,7 +11,5 @@ rm -rf ${TEST_DIR}
 mkdir -p ${TEST_DIR}
 cd ${TEST_DIR}
 
-
-
 ${BUILD_DIR}/example-c
 
