@@ -37,6 +37,12 @@ else
 fi
 
 
+id -al
+pwd
+ls -al 
+ls -al ${HOME}
+ls -al ${HOME}/.m2
+
 
 if [ -f ${HOME}/.m2/maven-repository-info ]; then
     . ${HOME}/.m2/maven-repository-info
