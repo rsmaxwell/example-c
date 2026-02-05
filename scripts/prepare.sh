@@ -81,9 +81,9 @@ tags='$FAMILY,$ARCHITECTURE,$PROJECT,$REPOSITORY,$REPOSITORYID,$VERSION,$BUILD_I
 find . -type f | while read filename; do
     echo "Writing ${filename}"
     file="${SOURCE_DIR}/${filename}"
-    dir="${dirname "${file}"}"
-    mkdir -p "${dir}"
-    envsubst "${tags}" < "${filename}" > "${file}"
+    dir="$(dirname "$file")"
+    mkdir -p "$dir"
+    envsubst "$tags" < "$filename" > "$file"
 done
 
 
