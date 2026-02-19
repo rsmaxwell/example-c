@@ -30,6 +30,7 @@ ls -al $HOME/.m2
 cat $HOME/.m2/settings.xml
 
 
+
 mvn --batch-mode --errors deploy:deploy-file \
 	-DgroupId=${GROUPID} \
 	-DartifactId=${ARTIFACTID}-build-${BUILD_ID} \
