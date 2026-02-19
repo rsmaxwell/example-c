@@ -158,6 +158,3 @@ EOL
 pwd
 ls -al 
 cat buildinfo
-
-ls -al $HOME/.m2
-cat $HOME/.m2/settings.xml
